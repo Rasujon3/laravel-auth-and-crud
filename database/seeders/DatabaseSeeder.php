@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Product;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -20,5 +22,14 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+
+        for ($i=0; $i < 20; $i++) {
+            Product::create([
+                'name' => 'product '.$i+1,
+                'qty' => rand(40,100),
+                'price' => rand(400, 500),
+                'description' => 'description '.$i+1,
+            ]);
+        }
     }
 }
