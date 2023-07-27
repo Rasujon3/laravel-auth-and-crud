@@ -28,6 +28,8 @@ Route::group(['middleware'=>['LoginCheckUser']],function () {
 Route::get('/admin/dashboard', [ProfileController::class, "dashboard"])->name('dashboard');
 // Product show
 Route::get('/admin/products', [UsersController::class, "index"])->name('users.index');
+// Route for the Share method in the ShareController
+Route::get('/admin/share', [ShareController::class, 'Share'])->name('admin.share');
 // Create a Product
 Route::get('/admin/product/create', [UsersController::class, "create"])->name('users.create');
 Route::post('/admin/product', [UsersController::class, "store"])->name('users.store');

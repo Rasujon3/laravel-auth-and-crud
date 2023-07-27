@@ -25,6 +25,10 @@
   <link rel="stylesheet" href="{{asset('admin-assets/plugins/daterangepicker/daterangepicker.css')}}">
   <!-- summernote -->
   <link rel="stylesheet" href="{{asset('admin-assets/plugins/summernote/summernote-bs4.min.css')}}">
+  <!-- Sparkline -->
+  <script src="{{asset('admin-assets/plugins/sparklines/sparkline.js')}}"></script>
+  
+
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">

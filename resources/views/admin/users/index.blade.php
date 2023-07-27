@@ -1,5 +1,16 @@
 @extends('admin.main-layout')
 
+@section('custom-css')
+  <link rel="stylesheet" href="{{ asset('assets/css/datatables/dataTables.bootstrap4.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/css/datatables/responsive.bootstrap4.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/css/datatables/buttons.bootstrap4.min.css') }}">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" rel="stylesheet">
+    
+@endsection
+
+
+
 @section('content-header')
     <div class="content-header">
       <div class="container-fluid">
@@ -34,39 +45,19 @@
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-lg-6">
-            <table class="table table-striped">
+            <table id="dataTable" class="table table-striped table-bordered display" style="width: 100%">
                 <thead>
                     <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Quantity</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Edit</th>
-                    <th scope="col">Delete</th>
+                    <th scope="col">id</th>
+                    <th scope="col">name</th>
+                    <th scope="col">qty</th>
+                    <th scope="col">price</th>
+                    <th scope="col">description</th>
+                    <!-- <th scope="col">Edit</th> -->
+                    <!-- <th scope="col">Delete</th> -->
                     </tr>
                 </thead>
-                <tbody>
-                    @foreach($products as $product)
-                    <tr>
-                    <th scope="row">{{$product->id}}</th>
-                    <td>{{$product->name}}</td>
-                    <td>{{$product->qty}}</td>
-                    <td>{{$product->price}}</td>
-                    <td>{{$product->description}}</td>
-                    <td>
-                        <a class="btn btn-dark" href="{{route('users.edit', ['product' => $product] )}}">Edit</a>
-                    </td>
-                    <td>
-                        <form action="{{route('users.delete', ['product' => $product])}}" method="post">
-                            @csrf
-                            @method('delete')
-                            <input type="submit" value="Delete" class="btn btn-danger">
-                        </form>
-                    </td>
-                    </tr>
-                    @endforeach
-                    
+                <tbody> 
                 </tbody>
             </table>
         </div>
@@ -75,4 +66,43 @@
     </div>
   </div>
 <!-- /.row (main row) -->
+
+@endsection
+@section('custom-scripts-links')
+<script src="{{ asset('assets/js/datatables/jquery.dataTables.min.js')}}"></script>
+<script src="{{ asset('assets/js/datatables/dataTables.bootstrap4.min.js')}}"></script>
+<script src="{{ asset('assets/js/datatables/dataTables.responsive.min.js')}}"></script>
+<script src="{{ asset('assets/js/datatables/responsive.bootstrap4.min.js')}}"></script>
+<script src="{{ asset('assets/js/datatables/dataTables.buttons.min.js')}}"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>  
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script> 
+@endsection
+
+@section('custom-scripts')
+<script>
+  // alert('hi');
+
+$(document).ready(function() {
+  $('#dataTable').DataTable({
+    iDisplayLength: '{{ 25 }}',
+    processing: true,
+    serverSide: true,
+    searching: true,
+    responsive: true,
+    "bDestroy": true,
+    ajax: {
+      url: '{{ route('users.index') }}',
+      method: 'GET'
+    },
+    columns: [
+      { data: 'id', name: 'id' },
+      { data: 'name', name: 'name' },
+      { data: 'qty', name: 'qty' },
+      { data: 'price', name: 'price' },
+      { data: 'description', name: 'description' },
+      { data: 'action', name: 'action', orderable: false, searchable: false },
+    ],
+  });
+});
+</script>
 @endsection

@@ -2,17 +2,23 @@
 
 namespace App\Http\Controllers\Admin;
 use App\Models\Product;
-
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
+use App\Traits\SharedMethodsTrait;
+use App\Http\Controllers\Admin\ShareController;
 
 class UsersController extends Controller
 {
-    public function index() {
-        // Show Data
-        $products = Product::all(); // get all products
-        return view('admin.users.index', ['products' => $products]);
-    }
+    public function index(Request $request)
+{
+    // $shareController = new ShareController();
+        // return $shareController->Share($request);
+        // app('App\Http\Controllers\Admin\ShareController')->Share($request);
+        ShareController::share($request);
+    return view('admin.users.index'); // Assuming 'admin.users.index' is your Blade view for regular HTTP request
+}
+
     public function create() {
         return view('admin.users.create');
     }
