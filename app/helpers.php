@@ -7,7 +7,7 @@ use Yajra\DataTables\DataTables;
 function sharedMethod(Request $request)
 {
     // Your shared logic here
-    if ($request->ajax()) {
+    // if ($request->ajax()) {
         
         $data = Product::select('*');
         return Datatables::of($data)
@@ -18,5 +18,5 @@ function sharedMethod(Request $request)
             })
             ->rawColumns(['action'])
             ->make(true);
-    }
+    // }
 }

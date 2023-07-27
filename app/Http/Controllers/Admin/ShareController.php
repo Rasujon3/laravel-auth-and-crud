@@ -11,9 +11,9 @@ use Yajra\DataTables\DataTables;
 class ShareController extends Controller
 {
     // public function Share($request) {
-    static function Share($request) {
+    static function Share() {
         
-        if (!$request->ajax()) {
+        // if (!$request->ajax()) {
 
             $data = Product::select('*');
             return Datatables::of($data)
@@ -24,7 +24,7 @@ class ShareController extends Controller
                 })
                 ->rawColumns(['action'])
                 ->make(true);
-        }
+        // }
         
     }
 }

@@ -68,13 +68,14 @@
 <!-- /.row (main row) -->
 
 @endsection
+
 @section('custom-scripts-links')
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>  
 <script src="{{ asset('assets/js/datatables/jquery.dataTables.min.js')}}"></script>
 <script src="{{ asset('assets/js/datatables/dataTables.bootstrap4.min.js')}}"></script>
 <script src="{{ asset('assets/js/datatables/dataTables.responsive.min.js')}}"></script>
 <script src="{{ asset('assets/js/datatables/responsive.bootstrap4.min.js')}}"></script>
 <script src="{{ asset('assets/js/datatables/dataTables.buttons.min.js')}}"></script>
-<script src="https://code.jquery.com/jquery-3.5.1.js"></script>  
 <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script> 
 @endsection
 
@@ -84,14 +85,10 @@
 
 $(document).ready(function() {
   $('#dataTable').DataTable({
-    iDisplayLength: '{{ 25 }}',
     processing: true,
     serverSide: true,
-    searching: true,
-    responsive: true,
-    "bDestroy": true,
     ajax: {
-      url: '{{ route('users.index') }}',
+      url: '{{ route('admin.share') }}',
       method: 'GET'
     },
     columns: [
@@ -100,7 +97,7 @@ $(document).ready(function() {
       { data: 'qty', name: 'qty' },
       { data: 'price', name: 'price' },
       { data: 'description', name: 'description' },
-      { data: 'action', name: 'action', orderable: false, searchable: false },
+      // { data: 'action', name: 'action', orderable: false, searchable: false },
     ],
   });
 });

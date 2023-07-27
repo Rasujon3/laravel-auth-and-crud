@@ -27,7 +27,7 @@
   <link rel="stylesheet" href="{{asset('admin-assets/plugins/summernote/summernote-bs4.min.css')}}">
   <!-- Sparkline -->
   <script src="{{asset('admin-assets/plugins/sparklines/sparkline.js')}}"></script>
-  
+  @yield('custom-css')
 
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -140,5 +140,7 @@
 
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{asset('admin-assets/dist/js/pages/dashboard.js')}}"></script>
+@yield('custom-scripts-links')
+@yield('custom-scripts')
 </body>
 </html>

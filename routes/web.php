@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\UsersController;
+use App\Http\Controllers\Admin\ShareController;
 use App\Models\Product;
 
 Route::get('/', [UserController::class, 'OnShow']);
